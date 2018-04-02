@@ -504,8 +504,11 @@ public class DataAPI: NSObject {
             case .success(let data):
                 let result: String = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
                 if (result.hasPrefix("{\"error\":")) {
-                    let json = JSON(data:data)
-                    failure(json["error"])
+                    do {
+                        let json = try JSON(data:data)
+                        failure(json["error"])
+                    } catch {
+                    }
                     return
                 }
                 success(result)
@@ -1458,8 +1461,11 @@ public class DataAPI: NSObject {
                 //FIXME:ShiftJIS以外の場合もある？
                 let result: String = NSString(data: data, encoding: String.Encoding.shiftJIS.rawValue)! as String
                 if (result.hasPrefix("{\"error\":")) {
-                    let json = JSON(data:data)
-                    failure(json["error"])
+                    do {
+                        let json = try JSON(data:data)
+                        failure(json["error"])
+                    } catch {
+                    }
                     return
                 }
                 success(result)
