@@ -92,7 +92,7 @@ public class DataAPI: NSObject {
         return request
     }
 
-    public func fetchList(_ url: String, params: Parameters? = nil, success: @escaping ((_ items:[JSON]?, _ total:Int?) -> Void!), failure: ((JSON?) -> Void)!)->Void {
+    public func fetchList(_ url: String, params: Parameters? = nil, success: @escaping ((_ items:[JSON]?, _ total:Int?) -> Void), failure: ((JSON?) -> Void)!)->Void {
         let request = makeRequest(.get, url: url, parameters: params)
         request.responseJSON { response in
             switch response.result {
